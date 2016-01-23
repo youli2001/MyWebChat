@@ -2,4 +2,6 @@
 
     <string name="app_name">MyWebChat</string>
 
+    <string name="tweet_caption">朋友圈</string>
+
 </resources>
