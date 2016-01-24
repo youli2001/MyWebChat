@@ -16,18 +16,21 @@ public final class R {
         public static final int image_border=0x7f020002;
     }
     public static final class id {
-        public static final int barProgress=0x7f050006;
-        public static final int imgAvatar=0x7f050004;
-        public static final int imgProfile=0x7f050002;
-        public static final int imgSenderAvatar=0x7f050007;
-        public static final int pnlComment=0x7f05000b;
-        public static final int pnlImage=0x7f05000a;
-        public static final int pnlProgress=0x7f050005;
-        public static final int scrollContent=0x7f050001;
+        public static final int barCenterProgress=0x7f050009;
+        public static final int barTopProgress=0x7f050002;
+        public static final int imgAvatar=0x7f050007;
+        public static final int imgProfile=0x7f050005;
+        public static final int imgSenderAvatar=0x7f05000a;
+        public static final int pnlCenterProgress=0x7f050008;
+        public static final int pnlComment=0x7f05000e;
+        public static final int pnlImage=0x7f05000d;
+        public static final int pnlTopProgress=0x7f050001;
+        public static final int scrollContent=0x7f050004;
+        public static final int textView1=0x7f050003;
         public static final int txtCaption=0x7f050000;
-        public static final int txtContent=0x7f050009;
-        public static final int txtSenderName=0x7f050008;
-        public static final int txtUserName=0x7f050003;
+        public static final int txtContent=0x7f05000c;
+        public static final int txtSenderName=0x7f05000b;
+        public static final int txtUserName=0x7f050006;
     }
     public static final class layout {
         public static final int main_page=0x7f030000;
@@ -35,6 +38,7 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f040000;
+        public static final int data_loadding=0x7f040002;
         public static final int tweet_caption=0x7f040001;
     }
 }

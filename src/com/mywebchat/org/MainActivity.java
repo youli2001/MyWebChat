@@ -14,10 +14,11 @@ import com.mywebchat.proxy.IFilter;
 
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -30,6 +31,8 @@ public class MainActivity extends ListActivity implements PullUpDOwnListener,
 ProgressListener {
 
 	private ChatPresenter mChatPrenseter;
+	private boolean mDataLoaded=false;
+	private boolean mIsLoadding=false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -70,7 +73,10 @@ ProgressListener {
 	 */
 	@Override
 	public void onRefresh() {
-		mChatPrenseter.FillData(null);
+		if(!mIsLoadding)
+		{
+			mChatPrenseter.FillData(null);
+		}
 	}
 
 	/**
@@ -78,7 +84,10 @@ ProgressListener {
 	 */
 	@Override
 	public void fillMoreItem() {
-		mChatPrenseter.FillMore();
+		if(!mIsLoadding)
+		{
+			mChatPrenseter.FillMore();
+		}
 	}
 
 	/**
@@ -86,12 +95,15 @@ ProgressListener {
 	 */
 	@Override
 	public void StartProgress() {
-		RelativeLayout pnl = (RelativeLayout) this
-				.findViewById(R.id.pnlProgress);
-		ProgressBar pbar = (ProgressBar) this.findViewById(R.id.barProgress);
-		pnl.setVisibility(0);
-		pnl.bringToFront();
-		pbar.setVisibility(0);
+		mIsLoadding=true;
+		int ProgressPnlID=!mDataLoaded?R.id.pnlCenterProgress:R.id.pnlTopProgress;
+		int ProgressBarID=!mDataLoaded?R.id.barCenterProgress:R.id.barTopProgress;
+
+		LinearLayout pnl = (LinearLayout) this.findViewById(ProgressPnlID);
+		ProgressBar pbar = (ProgressBar) this.findViewById(ProgressBarID);
+		pnl.setVisibility(View.VISIBLE);
+		pnl.invalidate();
+		pnl.getParent().requestLayout();
 		pbar.setIndeterminate(true);
 	}
 
@@ -100,10 +112,12 @@ ProgressListener {
 	 */
 	@Override
 	public void StopProgress() {
-		RelativeLayout pnl = (RelativeLayout) this
-				.findViewById(R.id.pnlProgress);
-		ProgressBar pbar = (ProgressBar) this.findViewById(R.id.barProgress);
-		pnl.setVisibility(4);
-		pbar.setVisibility(4);
+		mIsLoadding=false;
+		int ProgressPnlID=!mDataLoaded?R.id.pnlCenterProgress:R.id.pnlTopProgress;
+
+		LinearLayout pnl = (LinearLayout) this.findViewById(ProgressPnlID);
+		pnl.setVisibility(View.GONE);
+
+		mDataLoaded=true;
 	}
 }

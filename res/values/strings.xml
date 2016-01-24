@@ -4,4 +4,6 @@
 
     <string name="tweet_caption">朋友圈</string>
 
+    <string name="data_loadding">数据加载中...</string>
+
 </resources>
