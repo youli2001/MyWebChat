@@ -5,6 +5,11 @@ import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+/**
+ * 
+ * åŸºäºGsonçš„JSONè½¬æ¢å™¨
+ *
+ */
 public class JsonConvertor {
 	private Gson mGson;
 
@@ -13,7 +18,7 @@ public class JsonConvertor {
 				new ExclusionStrategy() {
 					@Override
 					public boolean shouldSkipField(FieldAttributes f) {
-						// ¹ıÂËµô×Ö¶ÎÃû°üº¬"unknown error","error"µÄ×Ö¶Î
+						//è·³è¿‡éæ³•å­—æ®µ
 						return f.getName().contains("error")
 								| f.getName().contains("unknown error");
 					}
@@ -25,6 +30,10 @@ public class JsonConvertor {
 				}).create();
 	}
 
+	/**
+	 * 
+	 * å°†JSONè½¬æ¢ä¸ºæŒ‡å®šç±»å‹å®ä½“
+	 */
 	public <T> T ConvertFromJson(String json, Class<T> cls) {
 		return mGson.fromJson(json, cls);
 	}

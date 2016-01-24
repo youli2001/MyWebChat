@@ -4,6 +4,11 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ListView;
 
+/**
+ * 
+ * 该控件将被包含在ScrollView中
+ *
+ */
 public class ListViewForScroll extends ListView {
 
 	public ListViewForScroll(Context context) {

@@ -2,6 +2,11 @@ package com.mywbchat.model;
 
 import com.mywebchat.proxy.Utility;
 
+/**
+ * 
+ * Tweet实体
+ *
+ */
 public class Tweet extends TweetBase {
 	public Comment[] comments;
 	public ImagePath[] images;	

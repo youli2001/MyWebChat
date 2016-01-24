@@ -2,6 +2,11 @@ package com.mywbchat.model;
 
 import com.mywebchat.proxy.Utility;
 
+/**
+ * 
+ * 评论实体
+ *
+ */
 public class Comment extends TweetBase {
 
 	@Override

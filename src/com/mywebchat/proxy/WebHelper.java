@@ -11,8 +11,17 @@ import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+/**
+ * 
+ * 网络数据处理
+ *
+ */
 public class WebHelper {
 
+	/**
+	 * 
+	 * 判断网络是否联通
+	 */
 	public static boolean isNetworkConnected(Context context) {
 		if (context != null) {
 			ConnectivityManager mConnectivityManager = (ConnectivityManager) context
@@ -26,6 +35,10 @@ public class WebHelper {
 		return false;
 	}
 
+	/**
+	 * 
+	 * 获取指定路径的json数据
+	 */
 	public static String GetJsonData(String Url)
 	{
 		String ret="";
@@ -63,6 +76,10 @@ public class WebHelper {
 		return ret;
 	}
 
+	/**
+	 * 
+	 * 从指定路径下载图片
+	 */
 	public static Drawable DownloadImage(String path) {
 		Drawable d=null;
 		try

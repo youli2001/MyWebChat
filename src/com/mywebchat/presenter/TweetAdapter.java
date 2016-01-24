@@ -13,6 +13,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/**
+ * 
+ * listview数据填充适配
+ *
+ */
 public class TweetAdapter extends BaseAdapter 
 {
 	private Tweet[] listItems;
@@ -41,36 +46,26 @@ public class TweetAdapter extends BaseAdapter
 		this.listItems = listItems;	
 	}
 	
+	/**
+	 * 
+	 * 动态加载数据
+	 */
 	public void SetItems(Tweet[] items)
 	{
 		listItems=items;
 		this.notifyDataSetChanged();
 	}
 
-	/* (non-Javadoc)
-	 * @see android.widget.Adapter#getCount()
-	 */
 	public int getCount() {		
 		return listItems.length;
 	}
 
-	/* (non-Javadoc)
-	 * @see android.widget.Adapter#getItem(int)
-	 */
 	public Object getItem(int position) {		
 		return listItems[position];
 	}
 
-	/* (non-Javadoc)
-	 * @see android.widget.Adapter#getItemId(int)
-	 */
 	public long getItemId(int position) {
-		Tweet st=listItems[position];
-
-		if(st!=null)
-			return 0;
-		else
-			return 0;
+		return 0;
 	}
 
 	/* (non-Javadoc)
@@ -98,30 +93,39 @@ public class TweetAdapter extends BaseAdapter
 		{
 			lstView = (ListItemView) convertView.getTag();
 		}
-				
+			
+		//填充明细行数据
 		this.FillData(lstView,(Tweet)this.getItem(position));
 		return convertView;
 	}
 	
+	/**
+	 * 
+	 * 填充一条tweet数据
+	 */
 	private void FillData(ListItemView view,Tweet data)
 	{
+		//加载基本信息
 		view.txt_SenderName.setText(data.sender.username);
 		view.txt_Content.setText(data.content);
-		ImageLoader.AsyncLoadImage(view.img_SenderAvatar,data.sender.avatar);
+		ImageLoader.AsyncLoadImage(view.img_SenderAvatar,data.sender.avatar,R.drawable.avatar);
+		
+		//动态加载图片信息
 		view.pnl_Image.removeAllViews();
-		view.pnl_Comment.removeAllViews();
-				
 		if(data.images!=null && data.images.length>0)
 		{
 			for(int index=0;index<data.images.length;index++)
 			{
 				ImageView iv=new ImageView(mcxt);
-				ImageLoader.AsyncLoadImage(iv, data.images[index].url);
+				ImageLoader.AsyncLoadImage(iv, data.images[index].url,0);
 				view.pnl_Image.addView(iv,new LinearLayout.LayoutParams(
 						LinearLayout.LayoutParams.WRAP_CONTENT,
 						LinearLayout.LayoutParams.WRAP_CONTENT));
 			}
 		}
+		
+		//动态加载评论数据
+		view.pnl_Comment.removeAllViews();
 		if(data.comments!=null && data.comments.length>0)
 		{
 			for(int index=0;index<data.comments.length;index++)
