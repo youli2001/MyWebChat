@@ -26,11 +26,11 @@ public class TweetPresenter implements IPresenter {
 	//数据承载listview
 	private ListView mListView;
 	private TweetAdapter mListViewAdapter;
-    //listview已经加载的tweet数据
+	//listview已经加载的tweet数据
 	private Tweet[] mCurrentTweetList = new Tweet[0];
 	//全部的tweet数据
 	private Tweet[] mAllTweetList = new Tweet[0];
-	
+
 	//一次加载的tweet数
 	private final int Page_Size = 5;
 	//用于异步处理
@@ -42,19 +42,16 @@ public class TweetPresenter implements IPresenter {
 	}
 
 	@Override
-	public void Initialize() {
-		
+	public void Initialize() {	
 		mListViewAdapter = new TweetAdapter(mcxt, new Tweet[0]);
 		mListView.setAdapter(mListViewAdapter);
 		mHandler = new Handler();
-
-		InitializeProcessBar();
 	}
 
 	/**
 	 * 准备数据加载进度条
 	 */
-	private void InitializeProcessBar() {
+	private void CreateProcessBar() {
 		ProgressBar mProgressBar = new ProgressBar(mcxt);
 		mProgressBar.setPadding(0, 0, 15, 0);
 		TextView mTipContent = new TextView(mcxt);
@@ -72,6 +69,15 @@ public class TweetPresenter implements IPresenter {
 				LinearLayout.LayoutParams.WRAP_CONTENT));
 
 		mListView.addFooterView(mLoadLayout);
+	}
+
+	private void RemoveProcessBar()
+	{
+		//数据已经加载完毕，移除进度条
+		if(mLoadLayout!=null)
+		{
+			mListView.removeFooterView(mLoadLayout);
+		}
 	}
 
 	/**
@@ -94,6 +100,8 @@ public class TweetPresenter implements IPresenter {
 	@Override
 	public void FillMore() {
 		if (mCurrentTweetList.length < mAllTweetList.length) {
+			CreateProcessBar();
+
 			//还有数据没有加载完，则直接加载
 			mHandler.post(new Runnable() {
 				@Override
@@ -102,12 +110,11 @@ public class TweetPresenter implements IPresenter {
 							+ Page_Size);
 					mListViewAdapter.SetItems(mCurrentTweetList);
 					mListView.setSelection(mCurrentTweetList.length);
+
+					RemoveProcessBar();
 				}
 			});
-		} else {
-			//数据已经加载完毕，移除进度条
-			mListView.removeFooterView(mLoadLayout);
-		}
+		} 
 	}
 
 	/**
