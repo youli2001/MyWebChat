@@ -52,6 +52,11 @@ public class ChatPresenter implements IPresenter {
 			mChildPresenters[index].Initialize();
 		}
 	}
+	
+	public UIData GetUIData()
+	{
+		return mData;
+	}
 
 	/**
 	 * 异步数据获取，完成后再通知填充数据

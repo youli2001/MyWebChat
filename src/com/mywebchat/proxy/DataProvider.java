@@ -25,7 +25,7 @@ public class DataProvider implements IDataProvider {
 	public UserInfo GetUser() {
 		UserInfo user=null;
 		//获取json内容并替换掉非法变量名
-		String json=WebHelper.GetJsonData(Settings.UserURL);
+		String json=NetUtility.GetJsonData(Settings.UserURL);
 		json=filter.FilterJSON(json);
 		
 		//将json转换为实体对象
@@ -44,7 +44,7 @@ public class DataProvider implements IDataProvider {
 	public Tweet[] GetTweets() {
 		Tweet[] list=null;
 		//获取json内容并替换掉非法变量名
-		String json=WebHelper.GetJsonData(Settings.TweetURL);
+		String json=NetUtility.GetJsonData(Settings.TweetURL);
 		json=filter.FilterJSON(json);
 		
 		//将json转换为实体对象

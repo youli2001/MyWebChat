@@ -27,7 +27,7 @@ import android.widget.TextView;
  *
  */
 public class MainActivity extends ListActivity implements PullUpDOwnListener,
-		ProgressListener {
+ProgressListener {
 
 	private ChatPresenter mChatPrenseter;
 

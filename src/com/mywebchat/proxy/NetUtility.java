@@ -16,7 +16,7 @@ import android.net.NetworkInfo;
  * 网络数据处理
  *
  */
-public class WebHelper {
+public class NetUtility {
 
 	/**
 	 * 

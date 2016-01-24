@@ -28,7 +28,7 @@ public class ImageLoader {
 			d = _imageCache.get(path);
 		} else {
 			//通过网络获取图片
-			d = WebHelper.DownloadImage(path);
+			d = NetUtility.DownloadImage(path);
 			
 			//缓存处理
 			if (d != null) {
